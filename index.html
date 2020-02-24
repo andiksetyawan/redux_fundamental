@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fundamental Redux</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/redux/4.0.5/redux.min.js"></script>
+  </head>
+  <body>
+    <button onclick="inc()">INCREMENT</button>
+    <button onclick="dec()">DECREMENT</button>
+    <h1 id="statetag"></h1>
+  </body>
+  <script>
+    let store = Redux.createStore(counter);
+    var init_state = 0;
+    document.getElementById("statetag").innerHTML = init_state;
+
+    function counter(state = init_state, action) {
+      switch (action.type) {
+        case "INCREMENT":
+          return state + 1;
+        case "DECREMENT":
+          return state - 1;
+        default:
+          return state;
+      }
+    }
+    store.subscribe(() => {
+      console.log(store.getState());
+      document.getElementById("statetag").innerHTML = store.getState();
+    });
+    function inc() {
+      //alert("sds");
+      store.dispatch({ type: "INCREMENT" });
+    }
+    function dec() {
+      store.dispatch({ type: "DECREMENT" });
+    }
+  </script>
+</html>
