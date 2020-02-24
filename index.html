@@ -12,7 +12,7 @@
     <h1 id="statetag"></h1>
   </body>
   <script>
-    let store = Redux.createStore(counter);
+    
     var init_state = 0;
     document.getElementById("statetag").innerHTML = init_state;
 
@@ -26,6 +26,7 @@
           return state;
       }
     }
+    let store = Redux.createStore(counter);
     store.subscribe(() => {
       console.log(store.getState());
       document.getElementById("statetag").innerHTML = store.getState();
